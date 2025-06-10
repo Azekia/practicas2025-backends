@@ -1,5 +1,6 @@
 # Notas sobre la implementación en Node.js
 
+Solo necesita tener descargado node en el equipo, conocimientos de js y tener descargada la extension de express.js para facilitar el uso de node.js
 xxx
 
 ```
