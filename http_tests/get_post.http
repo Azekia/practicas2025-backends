@@ -1,0 +1,12 @@
+@host = localhost:3000
+
+### salúdame
+GET http://{{host}}/api/hi
+
+### obtener la representación romana de un número
+POST http://{{host}}/api/toRoman
+content-type: application/json
+
+{
+  "numero": 99
+}
