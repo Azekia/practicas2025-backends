@@ -50,6 +50,7 @@ public class TraductorNumericoRomano implements HttpHandler {
             exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
             exchange.sendResponseHeaders(400, respByte.length);
             exchange.getResponseBody().write(respByte);
+
             exchange.getResponseBody().close();
             return;
         }
