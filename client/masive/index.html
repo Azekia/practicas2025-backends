@@ -26,18 +26,19 @@
         <option>GET</option></select
       ><br />
       Body (json)<br />
-      <textarea id="reqbody">120</textarea><br />
+      <textarea id="reqbody">{ "numero" : 120 }</textarea><br />
       Número de veces a invocar<br />
-      <input type="number" id="num" placeholder="número" value="20" /><br />
+      <input type="number" id="num" placeholder="número" value="5" /><br />
       Intervalo entre invocaciones<br />
       <input
         type="number"
         id="interval"
         placeholder="milisegundos"
-        value="500"
+        value="10"
       /><br />
       <p></p>
       <button id="btn">Invocar API</button>
+      <p id="resultado"></p>
     </div>
   </body>
 </html>
