@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
           fetch(urlAPI, {
             method: "POST",
-            headers: {
-        "Content-Type": "application/json; charset=utf-8",
-            },
+        //     headers: {
+        // "Content-Type": "application/json; charset=utf-8", //COMENTADO PARA TEST JS
+        //     },
             body: JSON.stringify({ numero: numeroRomano }),
           })
             .then((response) => response.text())
