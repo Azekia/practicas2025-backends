@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
       case 'POST':
         let i=0;
         let tiempoTotalFetchMS =0;
+        let respuestas =0;
+        let excepciones =0;
         let minFetchMS = Number.POSITIVE_INFINITY;
         let maxFetchMS = Number.NEGATIVE_INFINITY;
         let histograma = {};
@@ -20,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
           i++;
           if (i>numLlamadas)   {
             const final = new Date();
+            // TODO: corregir asincronía, que no termine hasta que todas las peticiones hayan resolve o reject
             document.getElementById("resultado").innerHTML = 
             inicio.toString()+ '<br>'
             + final.toString() + '<br>' 
@@ -30,8 +33,10 @@ document.addEventListener("DOMContentLoaded", function () {
             + (minFetchMS).toString() + "ms fetch mas corto<br>"
             + (maxFetchMS).toString() + "ms fetch mas largo<br>"
             + '<br>tiempos: ' + JSON.stringify(histograma) 
-            + '<br>statuses: ' + JSON.stringify(statuses);
-
+            + '<br>statuses: ' + JSON.stringify(statuses)
+            + '<br>respuestas: ' + respuestas.toString()
+            + '<br>excepciones: ' + excepciones.toString()
+            + '<br>pendientes: ' + (numLlamadas-respuestas-excepciones).toString();
             clearInterval(intervalID );
             return;
           }
@@ -51,8 +56,12 @@ document.addEventListener("DOMContentLoaded", function () {
             histograma[tiempoEsteFetch] = (histograma[tiempoEsteFetch]||0 ) +1;
             statuses[data.status] = (statuses[data.status]||0) + 1;
             tiempoTotalFetchMS += tiempoEsteFetch;
+            respuestas++;
           })
-          .catch((error) => console.error("Error : ", error));
+          .catch((error) => {
+            console.error("Error : ", error);
+            excepciones++;
+          });
         }, interval);
         break;
       case 'GET':
