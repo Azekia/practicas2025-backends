@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Masive Attack</title>
+
+    <title>Sequential Attack</title>
     <script src="./index.js"></script>
     <link rel="stylesheet" href="./index.css" />
   </head>
@@ -16,9 +17,9 @@
     <div class="formulario">
       URL de la API<br />
       <select type="text" id="url">
+        <option>http://192.168.138.18:1381/write</option>
         <option>http://localhost:3000/api/toRoman</option>
         <option>http://localhost:3000/api/hi</option>
-        <option>http://localhost:1381/write</option>
       </select>
       <br />
       Método<br />
@@ -42,7 +43,7 @@
         type="number"
         id="interval"
         placeholder="milisegundos"
-        value="10"
+        value="50"
       /><br />
       <p></p>
       <button id="btn">Invocar API</button>
