@@ -41,9 +41,7 @@ public class TraductorNumericoRomano implements HttpHandler {
 
             roman = getRomanNum(numberToParse);
 
-        } catch (NumberFormatException ignored) {
-
-        } catch (InvalidRangeException e) {
+        } catch (NumberFormatException | InvalidRangeException e) {
             responseJson.put("error", "El número debe ser un entero entre 1 y 3999");
             byte[] respByte = responseJson.toString().getBytes();
             exchange.getResponseHeaders().set("Content-Type", "application/json");
@@ -76,6 +74,4 @@ public class TraductorNumericoRomano implements HttpHandler {
         }
         return romano.toString();
     }
-
-
 }

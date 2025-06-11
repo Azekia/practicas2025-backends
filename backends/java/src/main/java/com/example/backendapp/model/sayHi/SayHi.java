@@ -2,9 +2,11 @@ package com.example.backendapp.model.sayHi;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.OutputStream;
+
+import org.json.JSONObject;
 
 public class SayHi implements HttpHandler {
 
@@ -16,14 +18,11 @@ public class SayHi implements HttpHandler {
             return;
         }
 
-        JSONObject responseJson = new JSONObject();
-
-        responseJson.put("", "Hi!");
-        byte[] respByte = responseJson.toString().getBytes();
-        exchange.getResponseHeaders().set("Content-type", "application/json");
-        exchange.sendResponseHeaders(200, respByte.length);
-        exchange.getResponseBody().write(respByte);
-        exchange.getResponseBody().close();
+        String response = "¡Hi!";
+        exchange.sendResponseHeaders(200, response.getBytes().length);
+        OutputStream os = exchange.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
 
     }
 }
