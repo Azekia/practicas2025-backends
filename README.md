@@ -3,7 +3,7 @@ PHP, Node, Java &amp; Net non serious benchmark
 
 Este repositorio contiene una serie de backends escritos en PHP, Node.js, Java y .NET que sirven para comparar el rendimiento de cada uno de estos lenguajes y plataformas en una serie de pruebas.
 
-Todos los backends comparten una misma API REST que permite realizar las siguientes operaciones:
+Todos los backends comparten una misma API HTTP que permite realizar las siguientes operaciones:
 
 - **GET /api/hi**: Devuelve un saludo.
 
