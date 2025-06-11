@@ -47,6 +47,7 @@ public class TraductorNumericoRomano implements HttpHandler {
             responseJson.put("error", "El número debe ser un entero entre 1 y 3999");
             byte[] respByte = responseJson.toString().getBytes();
             exchange.getResponseHeaders().set("Content-Type", "application/json");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
             exchange.sendResponseHeaders(400, respByte.length);
             exchange.getResponseBody().write(respByte);
             exchange.getResponseBody().close();
@@ -58,6 +59,7 @@ public class TraductorNumericoRomano implements HttpHandler {
 
         byte[] respBytes = responseJson.toString().getBytes();
         exchange.getResponseHeaders().set("Content-Type", "application/json");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
         exchange.sendResponseHeaders(200, respBytes.length);
         exchange.getResponseBody().write(respBytes);
         exchange.getResponseBody().close();
