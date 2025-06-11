@@ -25,7 +25,9 @@ public class TraductorNumericoRomano implements HttpHandler {
 
         InputStream is = exchange.getRequestBody();
         byte[] bytes = is.readAllBytes();
-        String body = new String(bytes).trim();
+        String bodyJSON = new String(bytes).trim();
+
+        String body = bodyJSON.replaceAll("[^\\d]", " ").trim();
 
         JSONObject responseJson = new JSONObject();
 
