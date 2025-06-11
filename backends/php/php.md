@@ -20,6 +20,16 @@ cd backends/php
 ```bash
 php -S localhost:3000
 ```
- ---
 
-Puerto y peticiones declaradas en `http_tests/get_post.http`
+- Después acceder a la siguiente ruta:
+ ```bash
+practicas2025-backends/client/masive/
+```
+
+- Acceder al archivo .html y hacer `🌐 Go Live`
+
+## Para probar test con el servidor:
+
+```bash
+practicas2025-backends/http_tests/get_post.http
+```
