@@ -1,45 +1,68 @@
 # practicas2025-backends
-PHP, Node, Java &amp; Net non serious benchmark
+PHP, Node, Java &amp; Net '*non so serious*' benchmark
 
 Este repositorio contiene una serie de backends escritos en PHP, Node.js, Java y .NET que sirven para comparar el rendimiento de cada uno de estos lenguajes y plataformas en una serie de pruebas.
 
-Todos los backends comparten una misma API HTTP que permite realizar las siguientes operaciones:
+Todos los backends deberán soportar peticiones (CORS ORIGIN) desde cualquier origen.
 
-- **GET /api/hi**: Devuelve un saludo.
+Todos los backends comparten una misma API HTTP que permite realizar las operaciones indicadas a continuación.
+
+---
+
+### `GET /api/hi`
 
 Devuelve un texto simple con un saludo.
+Por ejemplo, si se invoca desde la barra de un navegador, se mostrará el mensaje en la pestaña del navegador:
 
-```
+```txt
 Hi!
 ```
 
-- **POST /api/toRoman**: Convierte un número entero a su representación en números romanos.
+---
 
-El req.body debe contener un objeto JSON con la siguiente estructura:
+### `POST /api/toRoman`
+Convierte un número entero a su representación en números romanos.
+Para que tarde un poco, vamos a llamar a la función el número de veces indicado en el cuerpo de la petición.
 
-```json
-{
-  "numero": 1234
-}
-```
-
-El resultado será un objeto JSON con la siguiente estructura:
+El req.body debe contener un texto JSON que representa un objeto con la siguiente estructura:
 
 ```json
 {
   "numero": 1234,
+  "veces": 10000
+}
+```
+
+El resultado será un texto JSON que representa un objeto con la siguiente estructura:
+
+```json
+{
+  "numero": 1234,
+  "veces": 10000,
   "romano": "MCCXXXIV"
 }
 ```
 
-En caso de que el parámetro no sea un número entero entre 1 y 3999, se devolverá un error 400 con el siguiente mensaje:
+---
 
-```json
-{
-  "error": "El número debe ser un entero entre 1 y 3999"
-}
+### `GET /api/cuentaLetrasQuijote/letra`
+
+Devuelve un texto simple indicando  el número de veces que aparece esa letra en el texto del Quijote.
+Por ejemplo, si se invoca desde la barra de un navegador, se mostrará el mensaje en la pestaña del navegador:
+
+```txt
+La letra 'e' aparece 1234 veces en el Quijote.
 ```
 
+**IMPORTANTE**: Dado que no es el objeto de estas pruebas, en esta versión de la  función se dejará de lado la problemática de las mayúsculas, tildes y acentuaciones. Es decir, `u`, `U`, `ú`, `Ú`, `ü`, `Ü` no se cuentan como la misma letra.
+
+---
+
+---
+
+---
+
+#### resultados provisionales de toRoman (no sirven para comparar rendimiento)
 NODE
 CADA 0MS
 Wed Jun 11 2025 13:56:12 GMT+0200 (hora de verano de Europa central)
