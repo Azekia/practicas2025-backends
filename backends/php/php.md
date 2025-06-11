@@ -1,14 +1,21 @@
 # Servidor en php
+
 ## Requisitos para el funcionamiento
 
 - Tener instalado PHP o Xampp (Incluye PHP)
-- Servidor local (Apache, Nginx o `php -S`)
+- Servidor local (Apache, Nginx o `php -S(Comando de PHP para iniciar servidor)`)
 
 ---
 
 ## Cómo ejecutar el servidor
 
-Puedes iniciar el servidor con el comando:
+- Primero acceder desde la carpeta raiz del proyecto a 
+  
+```bash
+cd backends/php
+```
+
+- Después, puedes iniciar el servidor con el comando:
 
 ```bash
 php -S localhost:3000

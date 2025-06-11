@@ -2,10 +2,10 @@
 
 class RomanConverter
 {
-    public static function intToRoman(int $num): string
+    public static function intToRoman($num): string
     {
         if (!is_int($num)) {
-            throw new \InvalidArgumentException("La entrada debe ser un número entero.");
+            throw new \InvalidArgumentException("La entrada debe ser un numero entero.");
         }
 
         if ($num < 1 || $num > 3999) {
