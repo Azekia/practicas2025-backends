@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let tiempoTotalFetchMS =0;
         let minFetchMS = Number.POSITIVE_INFINITY;
         let maxFetchMS = Number.NEGATIVE_INFINITY;
+        let histograma = {};
         const inicio = new Date();
         document.getElementById("resultado").innerText="";
         const intervalID  = setInterval(() => {
@@ -26,7 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
             + (tiempoTotalFetchMS).toString() + "ms fetchs<br>"
             + (tiempoTotalFetchMS/numLlamadas).toString() + "ms por fetchs<br>"
             + (minFetchMS).toString() + "ms fetch mas corto<br>"
-            + (maxFetchMS).toString() + "ms fetch mas largo<br>";
+            + (maxFetchMS).toString() + "ms fetch mas largo<br>"
+            + JSON.stringify(histograma);
 
             clearInterval(intervalID );
             return;
@@ -42,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const tiempoEsteFetch = finalFetch-inicioFetch;
             if (tiempoEsteFetch<minFetchMS) minFetchMS=tiempoEsteFetch;
             if (tiempoEsteFetch>maxFetchMS) maxFetchMS=tiempoEsteFetch;
+            histograma[tiempoEsteFetch] = (histograma[tiempoEsteFetch]||0 ) +1;
             tiempoTotalFetchMS += tiempoEsteFetch;
           })
           .catch((error) => console.error("Error : ", error));
