@@ -5,7 +5,12 @@ import cors from 'cors';
 
 const api = express();
 
-api.use(cors());
+const corsOptions = {
+    origin: '*',
+    credentials: true,
+    optionsSuccessStatus: 200, // For legacy browser support
+};
+api.use(cors(corsOptions));
 
 api.get('/api/hi', (req, res)=>{
     const hiText = "Hi!"
