@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Masive Attack</title>
     <script src="./index.js"></script>
-    <link rel="stylesheet" href="./index.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
     <h1>Masive Attack</h1>
-    <p>Pulsa el botón para invocar el número de veces indicado a la API en un intervalo de los segundos indicados.</p>
+    <p>
+      Pulsa el botón para invocar el número de veces indicado a la API en un
+      intervalo de los segundos indicados.
+    </p>
     <div class="formulario">
-    URL de la API<br>
-    <input type="text" id="url" value="http://localhost:3000/api/toRoman" placeholder="http://servidor:puerto" /><br>
-    Método<br>
-    <select id="metodo" value="POST"><option>POST</option><option>GET</option></select><br>
-    Body (json)<br>
-    <textarea id="reqbody">
-        {
-            "numero": 99
-        }
-    </textarea><br>
-    Número de veces a invocar<br>
-    <input type="number" id="num" placeholder="número" value="20" /><br>
-    Intervalo entre invocaciones<br>
-    <input type="number" id="interval" placeholder="milisegundos" value="1000" /><br>
-    <p></p>
-    <button id="btn">Invocar API</button>
+      URL de la API<br />
+      <select type="text" id="url">
+        <option>http://localhost:3000/api/toRoman</option>
+        <option>http://localhost:3000/api/hi</option>
+      </select>
+      <br />
+      Método<br />
+      <select id="metodo" value="POST">
+        <option>POST</option>
+        <option>GET</option></select
+      ><br />
+      Body (json)<br />
+      <textarea id="reqbody">120</textarea><br />
+      Número de veces a invocar<br />
+      <input type="number" id="num" placeholder="número" value="20" /><br />
+      Intervalo entre invocaciones<br />
+      <input
+        type="number"
+        id="interval"
+        placeholder="milisegundos"
+        value="500"
+      /><br />
+      <p></p>
+      <button id="btn">Invocar API</button>
     </div>
-</body>
+  </body>
 </html>
