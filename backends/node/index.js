@@ -1,8 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import cors from 'cors';
 
 const api = express();
+
+api.use(cors());
 
 api.get('/api/hi', (req, res)=>{
     const hiText = "Hi!"
@@ -15,7 +18,6 @@ api.use(bodyParser.json({ limit: '5mb' }));
 
 api.post('/api/toRoman', (req, res)=> {
     let num = JSON.stringify(req.body.numero);
-    console.log(num)
     num = num.toString();
 const regex = /[a-z!@#\$%\^\&*\)\(+=._\-\]]+/i;
     
@@ -37,7 +39,7 @@ const regex = /[a-z!@#\$%\^\&*\)\(+=._\-\]]+/i;
         [4, "IV"],
         [1, "I"]
     ];
-
+    num = parseInt(req.body.numero);
     let romano = "";
     for (let i = 0; i < valoresRomanos.length; i++) {
         while (num >= valoresRomanos[i][0]) {
