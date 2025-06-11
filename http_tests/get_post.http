@@ -10,3 +10,7 @@ content-type: application/json
 {
   "numero": 99
 }
+
+### obtener el número de veces que aparece un carácter en el quijote.txt
+GET http://{{host}}/api/cuentaLetrasQuijote/e
+
