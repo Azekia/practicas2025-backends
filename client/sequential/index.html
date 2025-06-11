@@ -18,6 +18,7 @@
       <select type="text" id="url">
         <option>http://localhost:3000/api/toRoman</option>
         <option>http://localhost:3000/api/hi</option>
+        <option>http://localhost:1381/write</option>
       </select>
       <br />
       Método<br />
@@ -26,7 +27,14 @@
         <option>GET</option></select
       ><br />
       Body (json)<br />
-      <textarea id="reqbody">{ "numero" : 120 }</textarea><br />
+      <textarea id="reqbody">
+{ 
+  "apiToken" : "",
+  "format": "hex",
+  "data": "1b40434f44453132380a434f44453132382e2425313233340a1d6b490e434f44453132382e2425313233340a1d5641001b420101",
+  "numero": 120
+}
+      </textarea><br />
       Número de veces a invocar<br />
       <input type="number" id="num" placeholder="número" value="5" /><br />
       Intervalo entre invocaciones<br />

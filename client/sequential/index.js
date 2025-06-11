@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const inicioFetch = new Date();
           fetch(urlAPI, {
             method: "post",
-           // headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json' },
             body:bodyJSON 
           })
           .then((data,err) => {
