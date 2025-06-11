@@ -12,7 +12,7 @@ if (!isset($input['numero'])) {
 try {
     $numero = (int) $input['numero'];
     $romano = RomanConverter::intToRoman($numero);
-    echo json_encode(['romano' => $romano]);
+    echo json_encode(['numero' => $numero,'romano' => $romano]);
 } catch (\InvalidArgumentException | \OutOfRangeException $e) {
     http_response_code(400);
     echo json_encode(['error' => $e->getMessage()]);

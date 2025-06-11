@@ -9,7 +9,7 @@ class RomanConverter
         }
 
         if ($num < 1 || $num > 3999) {
-            throw new \OutOfRangeException("Número fuera de rango (1-3999).");
+            throw new \OutOfRangeException("El numero debe ser un entero entre 1 y 3999");
         }
 
         $valoresRomanos = [

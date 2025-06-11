@@ -1,7 +1,7 @@
 # Servidor en php
 ## Requisitos para el funcionamiento
 
-- PHP 7.4 o superior
+- Tener instalado PHP o Xampp (Incluye PHP)
 - Servidor local (Apache, Nginx o `php -S`)
 
 ---

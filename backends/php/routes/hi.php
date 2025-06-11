@@ -1,3 +1,3 @@
 <?php
-header('Content-Type: application/json');
-echo json_encode(['mensaje' => 'Hola']);
+header('Content-Type: text/html');
+echo ("Hi!");

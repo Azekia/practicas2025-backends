@@ -12,11 +12,19 @@
     <p>Pulsa el botón para invocar el número de veces indicado a la API en un intervalo de los segundos indicados.</p>
     <div class="formulario">
     URL de la API<br>
-    <input type=""text" id="url" placeholder="http://servidor:puerto" /><br>
+    <input type="text" id="url" value="http://localhost:3000/api/toRoman" placeholder="http://servidor:puerto" /><br>
+    Método<br>
+    <select id="metodo" value="POST"><option>POST</option><option>GET</option></select><br>
+    Body (json)<br>
+    <textarea id="reqbody">
+        {
+            "numero": 99
+        }
+    </textarea><br>
     Número de veces a invocar<br>
-    <input type="number" id="num" placeholder="número" /><br>
+    <input type="number" id="num" placeholder="número" value="20" /><br>
     Intervalo entre invocaciones<br>
-    <input type="number" id="interval" placeholder="milisegundos" /><br>
+    <input type="number" id="interval" placeholder="milisegundos" value="1000" /><br>
     <p></p>
     <button id="btn">Invocar API</button>
     </div>
