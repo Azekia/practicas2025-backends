@@ -8,10 +8,11 @@ POST http://{{host}}/api/toRoman
 content-type: application/json
 
 {
-  "numero": 99
+  "numero": 99,
+  "veces" : 5
 }
 
 ### obtener el número de veces que aparece un carácter en el quijote.txt
-GET http://{{host}}/api/cuentaLetrasQuijote/e
+GET http://{{host}}/api/cuentaLetrasQuijote/Ñ
 
 

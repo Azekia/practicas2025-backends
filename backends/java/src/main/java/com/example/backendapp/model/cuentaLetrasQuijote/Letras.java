@@ -12,11 +12,13 @@ public class Letras implements HttpHandler {
         InputStream is = exchange.getRequestBody();
         byte[] bytes = is.readAllBytes();
 
-        String bodyURL = new String(bytes).trim();
+        String bodyURL = exchange.getRequestURI().getPath(); //URL
+        System.out.println(bodyURL);
         char letter = bodyURL.charAt(bodyURL.length() - 1);
-        int count = count(letter, "backends/quijote.txt");
 
-        String response = String.format( "La letra %s aparece %s veces en el Quijote", letter, count);
+        int count = count(letter, "C:\\Grado\\practicas2025-backends\\backends\\quijote.txt");
+
+        String response = "La letra " + letter + " aparece " + count + " veces en el Quijote";
         exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
         exchange.sendResponseHeaders(200, response.getBytes().length);
 
