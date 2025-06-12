@@ -22,7 +22,7 @@ public class TraductorNumericoRomano implements HttpHandler {
         byte[] bytes = is.readAllBytes();
         String bodyJSON = new String(bytes).trim();
 
-        String bodyPredecessor[] = bodyJSON.split("//,");
+        String bodyPredecessor[] = bodyJSON.split(",");
 
         String body = bodyPredecessor[0].replaceAll("[^\\d]", " ").trim();
 
