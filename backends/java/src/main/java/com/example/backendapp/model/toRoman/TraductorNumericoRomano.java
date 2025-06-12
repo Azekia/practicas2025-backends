@@ -18,16 +18,15 @@ public class TraductorNumericoRomano implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        if (!"POST".equals(exchange.getRequestMethod())) {
-            exchange.sendResponseHeaders(405, -1);
-            return;
-        }
-
         InputStream is = exchange.getRequestBody();
         byte[] bytes = is.readAllBytes();
         String bodyJSON = new String(bytes).trim();
 
-        String body = bodyJSON.replaceAll("[^\\d]", " ").trim();
+        String bodyPredecessor[] = bodyJSON.split("//,");
+
+        String body = bodyPredecessor[0].replaceAll("[^\\d]", " ").trim();
+
+        String repetitions = bodyPredecessor[1].replaceAll("[^\\d]", " ").trim();
 
         JSONObject responseJson = new JSONObject();
 
@@ -41,7 +40,9 @@ public class TraductorNumericoRomano implements HttpHandler {
                 throw InvalidRangeException.errorRangeLimitException(numberToParse);
             }
 
-            roman = getRomanNum(numberToParse);
+            for (int i = 0; i < Integer.parseInt(repetitions); i++) {
+                roman = getRomanNum(numberToParse);
+            }
 
         } catch (NumberFormatException | InvalidRangeException e) {
             responseJson.put("error", "El número debe ser un entero entre 1 y 3999");
@@ -56,6 +57,7 @@ public class TraductorNumericoRomano implements HttpHandler {
         }
 
         responseJson.put("numero", numberToParse);
+        responseJson.put("repeticiones", repetitions);
         responseJson.put("romano", roman);
 
         byte[] respBytes = responseJson.toString().getBytes();       
