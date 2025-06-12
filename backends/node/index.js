@@ -2,7 +2,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import cors from 'cors';
+import * as fs from 'node:fs/promises';
+import { Buffer } from 'node:buffer';
 
+ 
 const api = express();
 
 const corsOptions = {
@@ -22,9 +25,11 @@ api.use(bodyParser.urlencoded({ extended: true }));
 api.use(bodyParser.json({ limit: '5mb' }));
 
 api.post('/api/toRoman', (req, res)=> {
+    let resultado = [];
+    const numVeces = parseInt(req.body.veces);
     let num = JSON.stringify(req.body.numero);
     num = num.toString();
-const regex = /[a-z!@#\$%\^\&*\)\(+=._\-\]]+/i;
+    const regex = /[a-z!@#\$%\^\&*\)\(+=._\-\]]+/i;
     
     if (num < 1 || num > 3999 || -1 < num.search(regex)) {
         res.send("El número debe ser un entero entre 1 y 3999");
@@ -44,20 +49,47 @@ const regex = /[a-z!@#\$%\^\&*\)\(+=._\-\]]+/i;
         [4, "IV"],
         [1, "I"]
     ];
+
+    console.log("numVeces",numVeces);
+
+    for(let i = 0; i < numVeces; i++){
     num = parseInt(req.body.numero);
+
     let romano = "";
-    for (let i = 0; i < valoresRomanos.length; i++) {
-        while (num >= valoresRomanos[i][0]) {
-            romano += valoresRomanos[i][1];
-            num -= valoresRomanos[i][0];
+    
+    for (let j = 0; j < valoresRomanos.length; j++) {
+        while (num >= valoresRomanos[j][0]) {
+            romano += valoresRomanos[j][1];
+            num -= valoresRomanos[j][0];
         }
     }
         const JSONaDevolver = {
             "numero": req.body.numero,
+            "veces": req.body.veces,
             "romano": romano
-        } 
-        res.send(JSONaDevolver);
+        }
+        // resultado.push(JSONaDevolver);
+        resultado = JSONaDevolver;
     }
+        // console.log(resultado) ;
+        res.json(resultado);
+        return
+    }
+})
+
+api.get('/api/cuentaLetrasQuijote/:letra', async (req, res)=> {
+    const letra = req.params.letra;
+    const dir = `./backends/quijote.txt`;
+    const content = await fs.readFile(dir, (err, data) => {
+      if (err) throw err;
+      return data.toString();
+    });
+    const contentToString = Buffer.from(content).toString();
+
+    const regexp = new RegExp(`${letra}`, 'g');
+    const veces = [...contentToString.matchAll(regexp)];
+
+    res.json(`La letra '${letra}' aparece ${veces.length} veces en el Quijote.`)
 })
 
 api.listen(3000, () => {

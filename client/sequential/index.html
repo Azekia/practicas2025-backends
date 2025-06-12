@@ -17,9 +17,10 @@
     <div class="formulario">
       URL de la API<br />
       <select type="text" id="url">
-        <option>http://192.168.138.18:1381/write</option>
         <option>http://localhost:3000/api/toRoman</option>
         <option>http://localhost:3000/api/hi</option>
+        <option>http://192.168.138.18:1381/write</option>
+        <option>http://localhost:3000/api/cuentaLetrasQuijote/a</option>
       </select>
       <br />
       Método<br />
@@ -29,13 +30,12 @@
       ><br />
       Body (json)<br />
       <textarea id="reqbody">
-{ 
-  "apiToken" : "",
-  "format": "ascii",
-  "data": "Hola desde el PC de XXXXXXXX\n",
-  "numero": 120
+{
+  "numero": 1234,
+  "veces": 10000
 }
-      </textarea><br />
+      </textarea
+      ><br />
       Número de veces a invocar<br />
       <input type="number" id="num" placeholder="número" value="5" /><br />
       Intervalo entre invocaciones<br />
