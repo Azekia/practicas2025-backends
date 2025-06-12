@@ -1,5 +1,6 @@
 package com.example.backendapp.utils;
 
+import com.example.backendapp.model.cuentaLetrasQuijote.Letras;
 import com.example.backendapp.model.sayHi.SayHi;
 import com.example.backendapp.model.toRoman.TraductorNumericoRomano;
 import com.sun.net.httpserver.HttpServer;
@@ -20,6 +21,7 @@ public class ApiServer {
     public void configureServer() {
         server.createContext("/api/hi", new SayHi());
         server.createContext("/api/toRoman", new TraductorNumericoRomano());
+        server.createContext("/api/cuentaLetrasQuijote", new Letras());
         server.setExecutor(null);
         server.start();
     }
