@@ -17,11 +17,14 @@ if ($requestUri === '/api/hi' && $requestMethod === 'GET') {
     exit;
 }
 
-if (str_starts_with($requestUri, '/api/cuentaLetrasQuijote/letra') && $requestMethod === 'GET') {
+$requestUri = urldecode($_SERVER['REQUEST_URI']);
+
+
+if (preg_match('#/api/cuentaLetrasQuijote/([a-zA-ZáéíóúüñÁÉÍÓÚÜÑ])#u', $requestUri, $matches) && $requestMethod === 'GET') {
+    $_GET['letra'] = $matches[1];
     require __DIR__ . '/routes/quijote.php';
     exit;
 }
-
 
 if ($requestUri === '/api/toRoman' && $requestMethod === 'POST') {
     require __DIR__ . '/routes/toRoman.php';

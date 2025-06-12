@@ -1,9 +1,9 @@
 <?php
-header("Content-Type: text/plain");
+header("Content-Type: text/plain; charset=utf-8");
 
-if (!isset($_GET['letra']) || strlen($_GET['letra']) !== 1) {
+if (!isset($_GET['letra']) || mb_strlen($_GET['letra'], 'UTF-8') !== 1) {
     http_response_code(400);
-    echo "Error, el caracter tiene que ser solo 1 letra";
+    echo "Error de caracter no válido, el caracter tiene que ser solo 1 letra";
     exit;
 }
 
@@ -17,5 +17,5 @@ if (!file_exists($archivo)) {
 }
 
 $contenido = file_get_contents($archivo);
-$conteo = substr_count($contenido, $letra);
+$conteo = mb_substr_count($contenido, $letra);
 echo "La letra '{$letra}' aparece {$conteo} veces en el Quijote.";
