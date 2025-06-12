@@ -18,11 +18,6 @@ public class TraductorNumericoRomano implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        if (!"POST".equals(exchange.getRequestMethod())) {
-            exchange.sendResponseHeaders(405, -1);
-            return;
-        }
-
         InputStream is = exchange.getRequestBody();
         byte[] bytes = is.readAllBytes();
         String bodyJSON = new String(bytes).trim();
@@ -44,6 +39,7 @@ public class TraductorNumericoRomano implements HttpHandler {
             if (numberToParse < 1 || numberToParse > 3999) {
                 throw InvalidRangeException.errorRangeLimitException(numberToParse);
             }
+
             for (int i = 0; i < Integer.parseInt(repetitions); i++) {
                 roman = getRomanNum(numberToParse);
             }
@@ -61,6 +57,7 @@ public class TraductorNumericoRomano implements HttpHandler {
         }
 
         responseJson.put("numero", numberToParse);
+        responseJson.put("repeticiones", repetitions);
         responseJson.put("romano", roman);
 
         byte[] respBytes = responseJson.toString().getBytes();       
