@@ -9,11 +9,8 @@ public class Letras implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        InputStream is = exchange.getRequestBody();
-        byte[] bytes = is.readAllBytes();
 
         String bodyURL = exchange.getRequestURI().getPath(); //URL
-        System.out.println(bodyURL);
         char letter = bodyURL.charAt(bodyURL.length() - 1);
 
         int count = count(letter, "C:\\Grado\\practicas2025-backends\\backends\\quijote.txt");
@@ -39,7 +36,8 @@ public class Letras implements HttpHandler {
             String line;
 
             while ((line = br.readLine()) != null) {
-                for(int i = 0; i < line.length(); i++) {
+                int l = line.length();
+                for(int i = 0; i < l; i++) {
                     if(line.charAt(i) == character) {
                         count++;
                     }
