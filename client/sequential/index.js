@@ -30,7 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
         body: metodo==='POST' ? bodyJSON : undefined
       })
       .then((data,err) => {
-        if (interval>=50) console.log("Respuesta #" + i, data.status);
+        if (interval>=50) {
+          console.log("Respuesta #" + i, data.status);
+          data.json().then((json) => {console.log("Respuesta JSON: ", json);});
+        }
         const finalFetch = new Date();
         const tiempoEsteFetch = finalFetch-inicioFetch;
         if (tiempoEsteFetch<minFetchMS) minFetchMS=tiempoEsteFetch;
