@@ -5,7 +5,7 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.*;
 
-public class LetrasQuijo implements HttpHandler {
+public class Letras implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -13,7 +13,9 @@ public class LetrasQuijo implements HttpHandler {
         String bodyURL = exchange.getRequestURI().getPath(); //URL
         char letter = bodyURL.charAt(bodyURL.length() - 1);
 
-        int count = count(letter, "../quijote.txt");
+        String url = "backends/quijote.txt";
+
+        int count = count(letter, url);
 
         String response = "La letra " + letter + " aparece " + count + " veces en el Quijote";
         exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
